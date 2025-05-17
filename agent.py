@@ -7,7 +7,7 @@ import asyncio
 
 from langchain_core.messages import AIMessage, ToolMessage
 from langchain_core.tools import tool
-from langchain_google_vertexai import ChatVertexAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from pydantic import BaseModel
 
 from langgraph.checkpoint.memory import MemorySaver
@@ -40,7 +40,7 @@ class ResponseFormat(BaseModel):
 class InventoryAgent:
     
     def __init__(self):
-        self.model = ChatVertexAI(model='gemini-2.0-flash-001')
+        self.model = ChatGoogleGenerativeAI(model='gemini-2.0-flash')
         self.tools = asyncio.run(load_mcp_tools())
         SYSTEM_INSTRUCTION = (
         'You are a specialized assistant for inventory management.'
